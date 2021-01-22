@@ -59,16 +59,25 @@ include "functions.php";
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item nav-link" href="user.php?do=view_all">All Users</a>
             <a class="dropdown-item nav-link" href="user.php?do=add_new">Add New User</a>
-            <a class="dropdown-item nav-link" href="user.php?do=edit_user">Edit Users</a>
           </div>
           </li>
           </div>
           
+          <div class="dropdown show">
+          <li class="nav-item ">
+          <a class="nav-link" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="./post.php">
+          <i class="material-icons">article</i>
+          <p>Post</p>
+          </a>
 
-  
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item nav-link" href="post.php?do=view_all">All Posts</a>
+            <a class="dropdown-item nav-link" href="post.php?do=add_new">Add New Post</a>
+          </div>
+          </li>
+          </div>
 
-
-        </ul>
+       </ul>
       </div>
     </div>
     <div class="main-panel">
