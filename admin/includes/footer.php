@@ -13,7 +13,7 @@
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="http://localhost/ourtimes/" target="_blank">
                   Blog
                 </a>
               </li>

@@ -4,6 +4,16 @@ include "connection.php";
 
 include "functions.php";
 
+session_start();
+
+if(empty($_SESSION['u_mail'])){
+
+  echo "<script type='text/javascript'>alert('Please Login First');
+              window.location='index.php';
+              </script>";
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -21,6 +31,8 @@ include "functions.php";
   <!--     Fonts and icons     -->
   <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
   <!-- CSS Files -->
   <link href="assets/css/material-dashboard.css" rel="stylesheet" />
 </head>
@@ -36,8 +48,14 @@ include "functions.php";
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="./index.php">
+          
+          <?php
+
+          if($_SESSION['u_type'] == 0){
+            ?>
+
+            <li class="nav-item active">
+            <a class="nav-link" href="dashboard.php">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
@@ -72,11 +90,55 @@ include "functions.php";
 
           <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item nav-link" href="post.php?do=view_all">All Posts</a>
-            <a class="dropdown-item nav-link" href="post.php?do=add_new">Add New Post</a>
+            <a class="dropdown-item nav-link" href="post.php?do=add_new_post">Add New Post</a>
+
+            <?php
+          }
+
+
+          if($_SESSION['u_type'] == 2){
+            ?>
+            <div class="dropdown show">
+          <li class="nav-item ">
+          <a class="nav-link" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" href="./post.php">
+          <i class="material-icons">article</i>
+          <p>Post</p>
+          </a>
+
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a class="dropdown-item nav-link" href="post.php?do=view_all">All Posts</a>
+            <a class="dropdown-item nav-link" href="post.php?do=add_new_post">Add New Post</a>
+            <?php
+          }
+
+          if($_SESSION['u_type'] == 1){
+            ?>
+            <a style="display: flex;align-items: center;" class="nav-link" href="post.php?do=add_new_post">
+          <i 
+          class="material-icons"
+          style="font-size: 30px;
+          margin-right: 6px;"
+          >
+          post_add
+          </i>
+
+          <p
+          style="color: rgba(102, 112, 124, 1);
+          font-size: 20px;"
+          >
+          Add New Post
+          </p>
+
+          </a>
+
+            <?php
+          }
+
+          ?>
+          
           </div>
           </li>
           </div>
-
        </ul>
       </div>
     </div>
@@ -136,10 +198,9 @@ include "functions.php";
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                  <a class="dropdown-item" href="#">Profile</a>
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Log out</a>
+                  <a class="dropdown-item" href="includes/logout.php">Log out</a>
                 </div>
               </li>
             </ul>

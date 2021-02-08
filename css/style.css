@@ -6,3 +6,7 @@
 .notice{
 	margin: 250px 0;
 }
+
+.#main-banner-carousel .owl-dots{
+	display: none !important;
+}

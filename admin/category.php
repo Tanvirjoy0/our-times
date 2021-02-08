@@ -20,13 +20,13 @@ include "includes/header.php";
                 </div>
                 <div class="card-body table-responsive">
                   <table class="table table-hover">
-                    <thead class="text-warning">
+                    <thead style="text-align: center;" class="text-warning">
                       <th>Serial</th>
                       <th>Name</th>
                       <th>Description</th>
                       <th>Action</th>
                     </thead>
-                    <tbody>
+                    <tbody style="text-align: center;">
 
                     	<!-- Read Operation Start from here -->
 
@@ -52,9 +52,54 @@ include "includes/header.php";
                           <button type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
                             <a href="category.php?editId=<?php echo $cat_id; ?>"><i class="material-icons">edit</i></a>
                           </button>
-                          <a href="category.php?deleteId=<?php echo $cat_id; ?>">
-                          	<button type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-                            <i class="material-icons">close</i>
+                            <!-- Trigger the modal with a button -->
+  
+    <a data-toggle="modal" data-target="#<?php echo $cat_id; ?>" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+            <i class="material-icons">close</i>
+          </a>
+    
+
+  <!-- Modal -->
+  <div class="modal fade" id="<?php echo $cat_id; ?>" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div style="margin-top: 15px;">
+          <h4 style="text-align: center;" class="modal-title">Are you sure you want to delete this category<?php echo ' ('.$cat_name.')'; ?>?</h4>
+        </div>
+        <div class="modal-body">
+          <a class="btn-danger btn1" href="category.php?deleteId=<?php echo $cat_id; ?>">
+            Yes
+          </a>
+          <a class="btn-dark btn2" data-dismiss="modal">
+            No
+          </a>
+          <style>
+              .modal-body{
+                text-align: center!important;
+              }
+              .btn1{
+                padding: 10px 12px;
+                margin-right: 5px;
+              }
+
+              .btn2{
+                padding: 10px 16px;
+                margin-left: 5px;
+                color: white!important;
+              }
+
+              .btn2:hover{
+                cursor: pointer;
+              }
+
+          </style>
+        </div>
+      </div>
+      
+    </div>
+  </div>
                           </button>
 
                         <!-- Delete Operation Start here -->

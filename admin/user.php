@@ -4,6 +4,12 @@ include "includes/header.php";
 
 ?>
 
+<?php
+
+if(($_SESSION['u_type'] == 0)){
+
+?>
+
 <div class="content">
 <div class="container-fluid">
 
@@ -25,7 +31,7 @@ if($do == 'view_all'){
                 </div>
                 <div class="card-body table-responsive">
                   <table class="table table-hover">
-                    <thead class="text-warning">
+                    <thead style="text-align: center;" class="text-warning">
                       <th>Serial</th>
                       <th>Photo</th>
                       <th>Name</th>
@@ -36,7 +42,7 @@ if($do == 'view_all'){
                       <th>About</th>
                       <th>Action</th>
                     </thead>
-                    <tbody>
+                    <tbody style="text-align: center;">
 
                     <?php 
 
@@ -48,59 +54,104 @@ if($do == 'view_all'){
 
                     while($response1 = mysqli_fetch_assoc($send1)){
 
-                    	$u_id = $response1['u_id'];
-                    	$u_photo = $response1['u_photo'];
-                    	$u_name = $response1['u_name'];
-                    	$u_pass = $response1['u_pass'];
-                    	$u_address = $response1['u_address'];
-                    	$u_mail = $response1['u_mail'];
-                    	$u_contact = $response1['u_contact'];
-                    	$u_type = $response1['u_type'];
-                    	$u_about = $response1['u_about'];
-                    	$i++;
+                      $u_id = $response1['u_id'];
+                      $u_photo = $response1['u_photo'];
+                      $u_name = $response1['u_name'];
+                      $u_pass = $response1['u_pass'];
+                      $u_address = $response1['u_address'];
+                      $u_mail = $response1['u_mail'];
+                      $u_contact = $response1['u_contact'];
+                      $u_type = $response1['u_type'];
+                      $u_about = $response1['u_about'];
+                      $i++;
 
-                    	?>
+                      ?>
 
-                    	<tr>
+                      <tr>
                         <td><?php echo $i; ?></td>
                         <td>
                         <img src="assets/img/users/<?php echo $u_photo; ?>" width="100px">
-                    	</td>
+                      </td>
                         <td><?php echo $u_name; ?></td>
                         <td><?php echo $u_address; ?></td>
                         <td><?php echo $u_mail; ?></td>
                         <td><?php echo $u_contact; ?></td>
                         <td>
-                        	<div>
-                            	<?php
+                          <div>
+                              <?php
 
-                            	if($u_type == 0){
-                            		echo '<span class="badge badge-danger">Admin</span>';
-                            	}
-                            	elseif ($u_type == 1) {
-                            		echo '<span class="badge badge-success">Subscriber</span>';
-                            	}
-                            	elseif ($u_type == 2) {
-                            		echo '<span class="badge badge-dark">Editor</span>';
-                            	}
+                              if($u_type == 0){
+                                echo '<span class="badge badge-danger">Admin</span>';
+                              }
+                              elseif ($u_type == 1) {
+                                echo '<span class="badge badge-success">Subscriber</span>';
+                              }
+                              elseif ($u_type == 2) {
+                                echo '<span class="badge badge-dark">Editor</span>';
+                              }
 
-                            	?>
+                              ?>
                             </div>
                         </td>
 
                         <td><?php echo substr($u_about, 0, 20); ?></td>
 
                         <td class="td-actions">
-	                      <a href="user.php?do=edit_user&editID=<?php echo $u_id; ?>" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
-	                        <i class="material-icons">edit</i>
-	                      </a>
-	                      <a href="user.php?do=dlt_user&deleteId=<?php echo $u_id; ?>" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
-	                        <i class="material-icons">close</i>
-	                      </a>
-	                    </td>
+                        <a href="user.php?do=edit_user&editID=<?php echo $u_id; ?>" type="button" rel="tooltip" title="Edit Task" class="btn btn-primary btn-link btn-sm">
+                          <i class="material-icons">edit</i>
+                        </a>
+                        <!-- Trigger the modal with a button -->
+  
+    <a data-toggle="modal" data-target="#<?php echo $u_id;?>" type="button" rel="tooltip" title="Remove" class="btn btn-danger btn-link btn-sm">
+            <i class="material-icons">close</i>
+          </a>
+    
+
+  <!-- Modal -->
+  <div class="modal fade" id="<?php echo $u_id;?>" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div style="margin-top: 15px;">
+          <h4 style="text-align: center;" class="modal-title">Are you sure you want to delete this user<?php echo ' ('.$u_name.')'; ?>?</h4>
+        </div>
+        <div class="modal-body">
+          <a class="btn-danger btn1" href="user.php?do=dlt_user&deleteId=<?php echo $u_id; ?>">
+            Yes
+          </a>
+          <a class="btn-dark btn2" data-dismiss="modal">
+            No
+          </a>
+          <style>
+              .modal-body{
+                text-align: center!important;
+              }
+              .btn1{
+                padding: 10px 12px;
+                margin-right: 5px;
+              }
+
+              .btn2{
+                padding: 10px 16px;
+                margin-left: 5px;
+                color: white!important;
+              }
+
+              .btn2:hover{
+                cursor: pointer;
+              }
+
+          </style>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+                      </td>
                       </tr>
 
-                    	<?php
+                      <?php
                     }
 
                     ?>
@@ -134,9 +185,9 @@ if($do == 'add_new'){
                 </div>
                 <div class="card-body">
                   <div class="row">
-                  	<div class="col-lg-12 col-md-12">
+                    <div class="col-lg-12 col-md-12">
 
-                  	<form method="POST" action="user.php?do=add_new_code" enctype="multipart/form-data">
+                    <form method="POST" action="user.php?do=add_new_code" enctype="multipart/form-data">
 
                     <div class="row">
                       <div class="col-md-4">
@@ -181,7 +232,7 @@ if($do == 'add_new'){
                       </div>
                     </div>
                     <div class="row">
-                    	<div class="col-md-6">
+                      <div class="col-md-6">
                         <div class="form-group">
                           <label class="bmd-label-floating">User Type</label>
                           <select class="form-control" name="role" required="required">
@@ -210,12 +261,12 @@ if($do == 'add_new'){
                       </div>
                     </div>
                     <div class="row">
-                    	<div class="col-md-12" class="form-group">
-                    		<input type="submit" name="add_btn" value="Add User" style="background: #a03ab5; color: white; border: none; border: 1px solid #a03ab5; padding: 10px 10px;">
-                    	</div>
+                      <div class="col-md-12" class="form-group">
+                        <input type="submit" name="add_btn" value="Add User" style="background: #a03ab5; color: white; border: none; border: 1px solid #a03ab5; padding: 10px 10px;">
+                      </div>
                     </div>
                   </form>
-              	 </div>
+                 </div>
                 </div>
                </div>
               </div>
@@ -233,60 +284,60 @@ if($do == 'add_new'){
 
 if($do == 'add_new_code'){
   
-	if($_SERVER['REQUEST_METHOD'] == 'POST'){
+  if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
-		$name = $_POST['name'];
-		$password = $_POST['password'];
-		$re_pass = $_POST['re_pass'];
-		$email = $_POST['email'];
-		$phone = $_POST['phone'];
-		$address = $_POST['address'];
-		$role = $_POST['role'];
-		$about = $_POST['about'];
-		$file = $_FILES['image']['name'];
-		$tmp_file = $_FILES['image']['tmp_name'];
+    $name = $_POST['name'];
+    $password = $_POST['password'];
+    $re_pass = $_POST['re_pass'];
+    $email = $_POST['email'];
+    $phone = $_POST['phone'];
+    $address = $_POST['address'];
+    $role = $_POST['role'];
+    $about = $_POST['about'];
+    $file = $_FILES['image']['name'];
+    $tmp_file = $_FILES['image']['tmp_name'];
 
-		// Array decleration of image file
+    // Array decleration of image file
 
-		$extensions = array('png','jpg','jpeg');
+    $extensions = array('png','jpg','jpeg');
 
-		$extn = strtolower(end(explode('.', $_FILES['image']['name'])));
+    $extn = strtolower(end(explode('.', $_FILES['image']['name'])));
 
-			if(in_array($extn,$extensions) === false){
-				echo '<div class="alert alert-danger">Please Enter An Image With The Following Extensions (png,jpg or jpeg)</div>';
-			}
+      if(in_array($extn,$extensions) === false){
+        echo '<div class="alert alert-danger">Please Enter An Image With The Following Extensions (png,jpg or jpeg)</div>';
+      }
 
-			if(($password == $re_pass) && (in_array($extn,$extensions) === true)){
+      if(($password == $re_pass) && (in_array($extn,$extensions) === true)){
 
-			if(strlen($password) < 5){
-				echo '<div class="alert alert-danger">Please Enter At Least 5 Digit/Character!</div>';
-			}else{
+      if(strlen($password) < 5){
+        echo '<div class="alert alert-danger">Please Enter At Least 5 Digit/Character!</div>';
+      }else{
 
-				$hashpassword = sha1($password);
+        $hashpassword = sha1($password);
 
-				$update_name = rand().'_'.$file;
+        $update_name = rand().'_'.$file;
 
-				move_uploaded_file($tmp_file, "assets/img/users/".$update_name);
+        move_uploaded_file($tmp_file, "assets/img/users/".$update_name);
 
-				// Insert Operation
+        // Insert Operation
 
-		$query2 = "INSERT INTO user(u_name,u_photo,u_pass,u_address,u_mail,u_contact,u_type,u_about) VALUES ('$name','$update_name','$hashpassword','$address','$email','$phone','$role','$about')";
-		$send2 = mysqli_query($db,$query2);
+    $query2 = "INSERT INTO user(u_name,u_photo,u_pass,u_address,u_mail,u_contact,u_type,u_about) VALUES ('$name','$update_name','$hashpassword','$address','$email','$phone','$role','$about')";
+    $send2 = mysqli_query($db,$query2);
 
-		if($send2){
-			header('LOCATION: user.php');
-		}else{
-			die("Insert User Info Into Database Error".mysqli_error($db));
-		}
+    if($send2){
+      header('LOCATION: user.php');
+    }else{
+      die("Insert User Info Into Database Error".mysqli_error($db));
+    }
 
-			}
+      }
 
-		}else{
-			echo '<div class="alert alert-danger">Please Enter Same Password!</div>';
-		}
+    }else{
+      echo '<div class="alert alert-danger">Please Enter Same Password!</div>';
+    }
 
 
-	}
+  }
 
 }
 
@@ -659,7 +710,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 if($do == 'dlt_user'){
 
 
-	if(isset($_GET['deleteId'])){
+  if(isset($_GET['deleteId'])){
 
   $ph_id = $_GET['deleteId'];
 
@@ -676,16 +727,16 @@ if($do == 'dlt_user'){
 
   }
 
-	$deleteId = $_GET['deleteId'];
+  $deleteId = $_GET['deleteId'];
 
-	$table_name = 'user';
-	$table_id   = 'u_id';
-	$removeId   = $deleteId;
-	$page_url   = 'user.php';
+  $table_name = 'user';
+  $table_id   = 'u_id';
+  $removeId   = $deleteId;
+  $page_url   = 'user.php';
 
-	delete($table_name,$table_id,$removeId,$page_url);
+  delete($table_name,$table_id,$removeId,$page_url);
 
-	}
+  }
 
                       
 
@@ -695,6 +746,18 @@ if($do == 'dlt_user'){
 
 </div>
 </div>
+
+<?php
+
+}else{
+
+  echo "<script type='text/javascript'>alert('You Are Not Authorized');
+              window.location='index.php';
+              </script>";
+
+}
+
+?>
 
 
 <?php
