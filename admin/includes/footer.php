@@ -3,18 +3,13 @@
           <nav class="float-left">
             <ul>
               <li>
-                <a href="">
+                <a href="http://localhost/ourtimes/">
                   Our Times
                 </a>
               </li>
               <li>
-                <a href="">
+                <a href="#">
                   About Us
-                </a>
-              </li>
-              <li>
-                <a href="http://localhost/ourtimes/" target="_blank">
-                  Blog
                 </a>
               </li>
             </ul>

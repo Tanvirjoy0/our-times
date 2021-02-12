@@ -64,7 +64,7 @@ if($do == 'view_all'){
 
               <?php
 
-              // Read operation 
+  // Read operation of post 
 
   $query1 = "SELECT * FROM post";
   $send1 = mysqli_query($db,$query1);

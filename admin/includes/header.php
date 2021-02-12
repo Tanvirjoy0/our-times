@@ -43,7 +43,7 @@ if(empty($_SESSION['u_mail'])){
   ?>
   <div >
     <div class="sidebar" data-color="purple" data-background-color="white" data-image="assets/img/sidebar-1.jpg">
-      <div class="logo"><a class="simple-text logo-normal">
+      <div class="logo"><a href="../index.php" target="_blank" class="simple-text logo-normal">
           Our Times
         </a></div>
       <div class="sidebar-wrapper">
@@ -55,7 +55,7 @@ if(empty($_SESSION['u_mail'])){
             ?>
 
             <li class="nav-item active">
-            <a class="nav-link" href="dashboard.php">
+            <a class="nav-link" href="profile.php">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
@@ -139,6 +139,22 @@ if(empty($_SESSION['u_mail'])){
           </div>
           </li>
           </div>
+          <?php 
+
+          if(($_SESSION['u_type'] == 0) || ($_SESSION['u_type'] == 2)){
+            ?>
+            <li class="nav-item ">
+            <a class="nav-link" href="comment.php">
+              <i class="material-icons">comment_bank</i>
+              <p>Comment</p>
+            </a>
+          </li>
+            <?php
+          }else{
+
+          }
+
+          ?>
        </ul>
       </div>
     </div>
@@ -200,6 +216,7 @@ if(empty($_SESSION['u_mail'])){
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="profile.php">Profile</a>
                   <a class="dropdown-item" href="includes/logout.php">Log out</a>
                 </div>
               </li>

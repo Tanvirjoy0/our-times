@@ -10265,7 +10265,7 @@ h6, .h6 {
 
 .navbar-bottom-menu .navbar-nav .nav-item:last-child {
   padding-right: 0;
-  padding-left: 50px;
+  padding-left: 0px;
 }
 
 @media (max-width: 767px) {
@@ -10576,6 +10576,27 @@ h6, .h6 {
   overflow: hidden;
 }
 
+@media (min-width: 1281px) {
+  
+  .img1 img{
+    height: 170px;
+
+  }
+  
+}
+
+/* 
+  ##Device = Laptops, Desktops
+  ##Screen = B/w 1025px to 1280px
+*/
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+    
+   .img1 img{
+    height: 170px;
+  }
+ }
+
 .image-hover img,
 .image-hover .thumb-title {
   transition: transform 0.4s;
@@ -10771,13 +10792,13 @@ footer .footer-logo {
 }
 
 .error-wrap {
-  margin: 240px 0;
+  margin: 0;
   text-align: center;
 }
 
 @media (max-width: 999px) {
   .error-wrap {
-    margin: 80px 0;
+    margin: 0;
   }
 }
 
@@ -10823,6 +10844,11 @@ footer .footer-logo {
   justify-content: space-between;
 }
 
+.lastone{
+padding-left: 0!important;
+}
+
+
 @media (max-width: 999px) {
   .search-container {
     width: 100%;
@@ -10858,3 +10884,10 @@ footer .footer-logo {
 }
 
 /*# sourceMappingURL=maps/style.css.map */
+/* 
+  ##Device = Desktops
+  ##Screen = 1281px to higher resolution desktops
+*/
+
+
+ 

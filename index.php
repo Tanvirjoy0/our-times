@@ -82,7 +82,9 @@
         <div class="carousel-content-wrapper mb-2">
           <div class="carousel-content">
             <h1 class="font-weight-bold">
-              <?php echo $p_title; ?>
+              <a style="color: white" href="single.php?p_id=<?php echo $p_id; ?>">
+                <?php echo $p_title; ?>
+                </a>
             </h1>
             <!-- <h5 class="font-weight-normal  m-0">
               <?php echo $p_des; ?>
@@ -131,7 +133,17 @@
   </div>
   <div class="col-lg-4">
     <div class="row">
-      <h3 style="font-weight: 600;margin-bottom: 0;">Recent Posts</h3>
+      <div>
+      <form method="POST" action="search.php" class="search-container" style="margin-top: 0!important;margin-bottom: 10px!important;width: 350px!important;" method="POST">
+        <input type="text" placeholder="Search.." name="search" />
+      <button type="submit"><i class="mdi mdi-magnify"></i></button>
+      </form>
+    </div>
+    </div>
+    <div class="row">
+      <div class="d-flex position-relative float-left">
+      <h3 class="section-title" style="margin-bottom: 5px!important;">Recent Post</h3>
+    </div>
     </div>
 
      <div class="row">
@@ -139,7 +151,7 @@
 
     // Read Post From Database
 
-          $query3 = "SELECT * FROM post WHERE p_status=1 ORDER BY p_id DESC LIMIT 8";
+          $query3 = "SELECT * FROM post WHERE p_status=1 ORDER BY p_id DESC LIMIT 6";
           $send3 = mysqli_query($db,$query3);
           $i = 0;
 
@@ -187,7 +199,9 @@
             <span class="fs-12 text-muted"><?php echo $u_name; ?></span>
           </div>
           <p class="fs-14 m-0 font-weight-medium line-height-sm">
-            <?php echo $p_title; ?>
+            <a style="color: black" href="single.php?p_id=<?php echo $p_id; ?>">
+                <?php echo $p_title; ?>
+                </a>
           </p>
         </div>
       </div>
@@ -406,7 +420,7 @@
 
         // Read operation 
 
-  $query5 = "SELECT * FROM post ORDER BY p_id DESC";
+  $query5 = "SELECT * FROM post WHERE p_status=1 ORDER BY p_id DESC";
   $send5 = mysqli_query($db,$query5);
 
   while($response5 = mysqli_fetch_assoc($send5)){
@@ -432,7 +446,7 @@
       ?>
 
       <div class="col-sm-4  mb-5 mb-sm-2">
-          <div class="position-relative image-hover">
+          <div class="position-relative image-hover img1">
             <img
               src="admin/assets/img/posts/<?php echo $p_thumbnail; ?>"
               class="img-fluid"
@@ -441,7 +455,9 @@
             <span class="thumb-title"><?php echo $cat_name6; ?></span>
           </div>
           <h5 class="font-weight-600 mt-3">
-            <a href="" style="color: black;"><?php echo $p_title; ?></a>
+            <a style="color: black" href="single.php?p_id=<?php echo $p_id; ?>">
+                <?php echo $p_title; ?>
+                </a>
           </h5>
         </div>
 

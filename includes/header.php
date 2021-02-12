@@ -2,6 +2,9 @@
 
 include "admin/includes/connection.php";
 
+ob_start();
+session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -46,7 +49,7 @@ include "admin/includes/connection.php";
                   <li>30°C,London</li> -->
                 </ul>
                 <div>
-                  <a class="navbar-brand" href="#"
+                  <a class="navbar-brand" href="index.php"
                     style="font-weight: bold;font-size: 30px;"
                     >OUR TIMES</a>
                 </div>
@@ -113,7 +116,7 @@ include "admin/includes/connection.php";
                       ?>
 
                       <li class="nav-item">
-                      <a class="nav-link" href="pages/world.html"><?php echo $cat_name; ?></a>
+                      <a class="nav-link" href="archive.php?cat_no=<?php echo $cat_id; ?>"><?php echo $cat_name; ?></a>
                       </li>
 
                       <?php
@@ -121,9 +124,8 @@ include "admin/includes/connection.php";
                       }
 
                     ?>
-
                     <li class="nav-item">
-                      <a class="nav-link" href="#"><i class="mdi mdi-magnify"></i></a>
+                      <a class="nav-link" href="author.php">Author</a>
                     </li>
                   </ul>
                 </div>

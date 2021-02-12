@@ -46,7 +46,7 @@ if($do == 'view_all'){
 
                     <?php 
 
-                    // Read Operation
+                    // Read Operation For User
 
                     $query1 = "SELECT * FROM user";
                     $send1 = mysqli_query($db,$query1);

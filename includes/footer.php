@@ -11,7 +11,7 @@
 
                   <?php
                   
-          $query1 = "SELECT * FROM post WHERE p_status=1 ORDER BY p_id ASC LIMIT 5";
+          $query1 = "SELECT * FROM post WHERE p_status=1 ORDER BY p_id DESC LIMIT 5";
           $send1 = mysqli_query($db,$query1);
 
           while($response1 = mysqli_fetch_assoc($send1)){
@@ -28,7 +28,11 @@
 
               ?>
 
-              <li><a href=""><?php echo $p_title; ?></a></li>
+              <li>
+                <a style="color: black" href="single.php?p_id=<?php echo $p_id; ?>">
+                <?php echo $p_title; ?>
+                </a>
+              </li>
 
               <?php
             }
@@ -62,7 +66,7 @@
                         ?>
 
                       <li>
-                        <a href="#"><?php echo $cat_name; ?>
+                        <a href="archive.php?cat_no=<?php echo $cat_id1; ?>"><?php echo $cat_name; ?>
                       <span>
                         <?php echo '('.$count2.')' ?>
                       </span>
@@ -93,10 +97,10 @@
               <div class="col-sm-3 col-lg-3">
                 <ul class="footer-vertical-nav">
                   <li class="menu-title"><a href="#">More</a></li>
-                  <li><a href="#">RSS</a></li>
-                  <li><a href="#">FAQ</a></li>
-                  <li><a href="#">User Agreement</a></li>
-                  <li><a href="#">Privacy</a></li>
+                  <li><a href="">RSS</a></li>
+                  <li><a href="">FAQ</a></li>
+                  <li><a href="">User Agreement</a></li>
+                  <li><a href="">Privacy</a></li>
                   <li><a href="pages/aboutus.html">About us</a></li>
                   <li><a href="pages/contactus.html">Contact</a></li>
                 </ul>
@@ -106,8 +110,8 @@
               <div class="col-sm-12">
                 <div class="d-flex justify-content-between">
                   <div>
-                  <a class="navbar-brand"
-                    style="font-weight: bold;font-size: 30px;"
+                  <a href="index.php" class="navbar-brand"
+                    style="font-weight: bold;font-size: 30px;color: black;"
                     >OUR TIMES</a>
                 </div>
 
@@ -178,5 +182,10 @@
     <!-- Custom js for this page-->
     <script src="./assets/js/demo.js"></script>
     <!-- End custom js for this page-->
+    <?php
+
+    ob_end_flush();
+
+    ?>
   </body>
 </html>

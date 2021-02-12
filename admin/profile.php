@@ -8,8 +8,31 @@ include "includes/header.php";
 
 <div class="content">
         <div class="container-fluid">
-          
-        	<div class="main-content">
+          <?php 
+
+          // Read User Info From Database
+
+          $user0 = $_SESSION['u_id'];
+
+          $query0 = "SELECT * FROM user WHERE u_id='$user0'";
+
+          $send0 = mysqli_query($db,$query0);
+
+          while($result0 = mysqli_fetch_assoc($send0)){
+
+            $id0 = $result0['u_id'];
+            $photo0 = $result0['u_photo'];
+            $name0 = $result0['u_name'];
+            $pass0 = $result0['u_pass'];
+            $address0 = $result0['u_address'];
+            $mail0 = $result0['u_mail'];
+            $contact0 = $result0['u_contact'];
+            $type0 = $result0['u_type'];
+            $about0 = $result0['u_about'];
+
+            ?>
+
+          <div class="main-content">
     
     <!-- Header -->
     <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="background-image: url(assets/img/profile.jpg); background-size: cover; background-position: center top;">
@@ -18,10 +41,10 @@ include "includes/header.php";
       <!-- Header container -->
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
-		<div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello <?php echo $_SESSION['u_name']; ?></h1>
+    <div class="col-lg-12 col-md-12">
+            <h1 class="display-2 text-white">Hello <br> <?php echo $name0; ?></h1>
             <p class="text-white mt-0 mb-5">This is your profile page.Here you can see all the information about you.</p>
-            <a href="edit.php?do=edit_user&editID=<?php echo $_SESSION['u_id'];?>" class="btn btn-info">Edit profile</a>
+            <a href="edit.php?do=edit_user&editID=<?php echo $id0;?>" class="btn btn-info">Edit profile</a>
           </div>
         </div>
       </div>
@@ -35,66 +58,39 @@ include "includes/header.php";
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src="assets/img/users/<?php echo $_SESSION['u_photo']; ?>">
+                    <img src="assets/img/users/<?php echo $photo0; ?>">
                   </a>
                 </div>
               </div>
             </div>
-            <!-- <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
-              <div class="d-flex justify-content-between">
-                <a href="#" class="btn btn-sm btn-info mr-4">Connect</a>
-                <a href="#" class="btn btn-sm btn-default float-right">Message</a>
-              </div>
-            </div> -->
             <div class="card-body pt-0 pt-md-4">
               <div class="row">
                 <div class="col">
                   <div class="card-profile-stats d-flex justify-content-center mt-md-5">
-                    <!-- <div>
-                      <span class="heading">22</span>
-                      <span class="description">Friends</span>
-                    </div>
-                    <div>
-                      <span class="heading">10</span>
-                      <span class="description">Photos</span>
-                    </div>
-                    <div>
-                      <span class="heading">89</span>
-                      <span class="description">Comments</span>
-                    </div> -->
                   </div>
                 </div>
               </div>
               <div class="text-center info">
                 <h3>
-                  <?php echo $_SESSION['u_name']; ?>
+                  <?php echo $name0; ?>
                 </h3>
                 <h3>
-                	<?php
+                  <?php
 
-                	$role = $_SESSION['u_type'];
+                  $role = $type0;
 
-                	if($role == 0){
-                            		echo '<span class="badge badge-danger">Admin</span>';
-                            	}
-                            	elseif ($role == 1) {
-                            		echo '<span class="badge badge-success">Subscriber</span>';
-                            	}
-                            	elseif ($role == 2) {
-                            		echo '<span class="badge badge-dark">Editor</span>';
-                            	}
+                  if($role == 0){
+                                echo '<span class="badge badge-danger">Admin</span>';
+                              }
+                              elseif ($role == 1) {
+                                echo '<span class="badge badge-success">Subscriber</span>';
+                              }
+                              elseif ($role == 2) {
+                                echo '<span class="badge badge-dark">Editor</span>';
+                              }
 
-                	?>
+                  ?>
                 </h3>
-                <!-- <div class="h5 mt-4">
-                  <i class="ni business_briefcase-24 mr-2"></i>Solution Manager - Creative Tim Officer
-                </div>
-                <div>
-                  <i class="ni education_hat mr-2"></i>University of Computer Science
-                </div>
-                <hr class="my-4">
-                <p>Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick Murphy — writes, performs and records all of his own music.</p>
-                <a href="#">Show more</a> -->
               </div>
             </div>
           </div>
@@ -106,9 +102,6 @@ include "includes/header.php";
                 <div class="col-8">
                   <h3 class="mb-0">My account</h3>
                 </div>
-                <!-- <div class="col-4 text-right">
-                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>
-                </div> -->
               </div>
             </div>
             <div class="card-body">
@@ -120,7 +113,7 @@ include "includes/header.php";
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">User Name</label>
                         <p class="form-control form-control-alternative">
-                        	<?php echo $_SESSION['u_name']; ?>
+                          <?php echo $name0; ?>
                         </p>
                       </div>
                     </div>
@@ -128,7 +121,7 @@ include "includes/header.php";
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Email</label>
                         <p class="form-control form-control-alternative">
-                        	<?php echo $_SESSION['u_mail']; ?>
+                          <?php echo $mail0; ?>
                         </p>
                       </div>
                     </div>
@@ -143,7 +136,7 @@ include "includes/header.php";
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Contact No</label>
                         <p class="form-control form-control-alternative">
-                        	<?php echo $_SESSION['u_contact']; ?>
+                          <?php echo $contact0; ?>
                         </p>
                       </div>
                     </div>
@@ -151,7 +144,7 @@ include "includes/header.php";
                       <div class="form-group focused">
                         <label class="form-control-label" for="input-username">Address</label>
                         <p class="form-control form-control-alternative">
-                        	<?php echo $_SESSION['u_address']; ?>
+                          <?php echo $address0; ?>
                         </p>
                       </div>
                     </div>
@@ -162,7 +155,7 @@ include "includes/header.php";
                 <h6 class="heading-small text-muted mb-4">About me</h6>
                 <div class="col-lg-12">
                   <div class="form-group focused">
-                    <p class="form-control form-control-alternative"><?php echo $_SESSION['u_about']; ?></p>
+                    <p class="form-control form-control-alternative"><?php echo $about0; ?></p>
                   </div>
                 </div>
               </form>
@@ -174,6 +167,14 @@ include "includes/header.php";
   </div>
 
         </div>
+
+            <?php
+
+          }
+
+          ?>
+          
+          
       </div>
 
 
